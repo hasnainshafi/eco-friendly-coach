@@ -3,33 +3,35 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 const Register = () => {
-  const [formData, setFormData] = useState({
-    username: '',
-    email: '',
-    password: '',
-  });
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
-  const { username, email, password } = formData;
-
-  const onChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
-
-  const onSubmit = async (e) => {
-    e.preventDefault();
+  const handleRegister = async () => {
     try {
-      await axios.post('/api/register', formData);
-      alert('Registration successful');
+      await axios.post('/api/register', { username, password });
+      alert('Registration successful!');
     } catch (error) {
       alert('Registration failed');
     }
   };
 
   return (
-    <form onSubmit={onSubmit}>
-      <input type="text" name="username" value={username} onChange={onChange} placeholder="Username" required />
-      <input type="email" name="email" value={email} onChange={onChange} placeholder="Email" required />
-      <input type="password" name="password" value={password} onChange={onChange} placeholder="Password" required />
-      <button type="submit">Register</button>
-    </form>
+    <div>
+      <h2>Register</h2>
+      <input
+        type="text"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+        placeholder="Username"
+      />
+      <input
+        type="password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        placeholder="Password"
+      />
+      <button onClick={handleRegister}>Register</button>
+    </div>
   );
 };
 

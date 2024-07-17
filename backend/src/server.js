@@ -1,23 +1,18 @@
 // backend/src/server.js
 const express = require('express');
-const cors = require('cors');
-const bodyParser = require('body-parser');
-const routes = require('./routes');
-require('dotenv').config();
-
 const app = express();
-app.use(cors());
+const bodyParser = require('body-parser');
+const cors = require('cors');
+
 app.use(bodyParser.json());
-app.use('/api', routes);
+app.use(cors());
+
+app.post('/api/register', (req, res) => {
+  // Handle registration logic here
+  res.send({ message: 'User registered' });
+});
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-
-
-const sequelize = require('./config');
-const User = require('./models/User');
-
-// Sync database
-sequelize.sync()
-  .then(() => console.log('Database synced'))
-  .catch(err => console.log('Error: ' + err));
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
