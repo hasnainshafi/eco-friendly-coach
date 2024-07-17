@@ -9,7 +9,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // Secret key for JWT
-const JWT_SECRET = 'your_secret_key';
+const JWT_SECRET = 'f38d466ac3dec52162850a12526c9847f18517002c321a6cedf0501ae083430d3e3f5afaca1d30185b236cfcce1ab45a3ac6285cf4493d291bf88dd8b8c75d82';
 
 // Middleware to verify token
 const authenticateToken = (req, res, next) => {
