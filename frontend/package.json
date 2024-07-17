@@ -1,5 +1,4 @@
 {
-  "proxy": "https://temporal-ink-spinosaurus.glitch.me/",
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
