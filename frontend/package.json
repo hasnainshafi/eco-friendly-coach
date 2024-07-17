@@ -1,5 +1,5 @@
 {
-  "proxy": "https://your-backend-project.glitch.me",
+  "proxy": "https://pepper-grizzly-increase.glitch.me/",
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
