@@ -8,7 +8,9 @@ const Register = () => {
 
   const handleRegister = async () => {
     try {
-      await axios.post('/api/register', { username, password });
+      const response = await axios.post('/api/register', { username, password });
+      const { token } = response.data;
+      localStorage.setItem('token', token); // Store token
       alert('Registration successful!');
     } catch (error) {
       alert('Registration failed');

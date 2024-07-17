@@ -3,24 +3,36 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 const Profile = () => {
-  const [user, setUser] = useState(null);
+  const [profileData, setProfileData] = useState(null);
 
   useEffect(() => {
-    const fetchUser = async () => {
+    const fetchProfileData = async () => {
+      const token = localStorage.getItem('token');
       try {
-        const res = await axios.get('/api/profile', {
-          headers: { Authorization: localStorage.getItem('token') },
+        const response = await axios.get('/api/profile', {
+          headers: {
+            'Authorization': token,
+          },
         });
-        setUser(res.data);
+        setProfileData(response.data);
       } catch (error) {
-        alert('Failed to fetch profile');
+        console.error('Error fetching profile data', error);
       }
     };
 
-    fetchUser();
+    fetchProfileData();
   }, []);
 
-  return user ? <div>Welcome, {user.username}</div> : <div>Loading...</div>;
+  return (
+    <div>
+      <h2>Profile</h2>
+      {profileData ? (
+        <pre>{JSON.stringify(profileData, null, 2)}</pre>
+      ) : (
+        <p>Loading profile...</p>
+      )}
+    </div>
+  );
 };
 
 export default Profile;
